@@ -57,6 +57,7 @@
     let hotChocolate = $('#hot-chocolate');
     let revenueMessage = $('#revenue');
     let drinksOrdered = [];
+    let totalPrice = 0; 
 
     const prices = {
         "brew": 2.05,
@@ -81,16 +82,16 @@
     }
 
     function revenue(drinksArray) {
-        let totalPrice; 
+        let price = 0;
         for (let drink of drinksArray) {
             if (drink === "brew") {
-                let price = prices["brew"]; 
+                price = prices["brew"]; 
             } else if (drink === "espresso") {
-                let price = prices["espresso"]; 
+                price = prices["espresso"]; 
             } else if (drink === "latte") {
-                let price = prices["latte"]; 
+                price = prices["latte"]; 
             } else {
-                let price = prices["hot chocolate"];
+                price = prices["hot chocolate"];
             }
         }
         totalPrice += price;
@@ -102,7 +103,7 @@
         drinksOrdered.push(drinkType);
 
         // call revenue function and update revenueMessage
-        // $(revenueMessage).attr(revenue(drinksOrdered));
+        $(revenueMessage).html("$" + revenue(drinksOrdered).toFixed(2));
 
         makeCoffee1()
         setTimeout(makeCoffee2, 1500);
